@@ -1,0 +1,15 @@
+{
+  "name": "checklist-app",
+  "version": "1.0.0",
+  "description": "17 Web Dev Interview Coding Assignment",
+  "main": "run.js",
+  "scripts": {
+    "start": "node run.js"
+  },
+  "author": "Jonathan Rich",
+  "license": "",
+  "dependencies": {
+    "express": "^4.16.4",
+    "yargs": "^13.2.2"
+  }
+}
