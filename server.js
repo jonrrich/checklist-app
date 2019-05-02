@@ -12,9 +12,11 @@ module.exports = {
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const database = require("./database.js");
 const authentication = require("./authentication.js");
+const users = require("./users.js");
 
 
 
@@ -33,6 +35,7 @@ function expressStart (port) {
       const app = express();
 
       app.use(bodyParser.json());
+      app.use(cookieParser());
 
       expressDynamicContent(app);
 
@@ -53,5 +56,6 @@ function expressDynamicContent (app) {
 
   app.post("/api/users", authentication.postUser);   // User Signup
   app.post("/api/sessions", authentication.postSession); // User Login
+  app.get("/api/me", users.getMe);
 
 }
