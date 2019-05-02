@@ -1,10 +1,13 @@
+// Main file for the checklist-app application.
+
+
 console.log("checklist-app by Jonathan Rich\n");
 
 
 
 const yargs = require("yargs");
-const express = require("express");
-const path = require("path");
+
+const server = require("./server.js");
 
 
 
@@ -23,13 +26,14 @@ if (argv.port != null) {
 	options.port = argv.port;
 }
 
-console.log(`Running on port ${options.port}\n`);
+console.log("-- Options --");
+console.log(`Running on port ${options.port}`);
+console.log("-".repeat(15) + "\n")
 
 
 
-// Start express server
-const app = express();
+// Launch
+console.log("Launching...");
 
-app.use("/", express.static(path.join(__dirname, "public")));
-
-app.listen(options.port, () => console.log("Express server started."));
+server.start(options.port)
+.then(() => console.log("Ready."));

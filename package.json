@@ -9,6 +9,7 @@
   "author": "Jonathan Rich",
   "license": "",
   "dependencies": {
+    "diskdb": "^0.1.17",
     "express": "^4.16.4",
     "yargs": "^13.2.2"
   }
