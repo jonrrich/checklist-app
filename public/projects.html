@@ -28,6 +28,11 @@
 
         <button v-on:click="addTask(i)">Add Task</button>
 
+        <div class="project-progress-bar">
+          <span>{{ projectProgress(i) }}%</span>
+          <div v-bind:style="{ width: projectProgress(i) + '%' }"></div>
+        </div>
+
       </div>
 
     </div>

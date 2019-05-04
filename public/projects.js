@@ -88,6 +88,18 @@ var app = new Vue({
           }
       });
 
+    },
+
+    projectProgress: function (projectIndex) {
+
+      var project = this.projects[projectIndex];
+
+      var tasks = project.tasks;
+
+      var totalTasks = tasks.length;
+      var completedTasks = tasks.filter((task) => task.completed).length;
+
+      return totalTasks == 0 ? 0 : Math.floor(100 * completedTasks / totalTasks);
     }
   },
 
