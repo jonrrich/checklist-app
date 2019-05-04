@@ -25,7 +25,7 @@ const collections = ["users", "sessions", "projects"];  // List of collections i
 const uniqueFields = {                                  // Specifies which data field should be enforced to be unique for each collection
                      "users": "email",
                      "sessions": "email",
-                     "projects": "id"
+                     "projects": "email"
                    };
 
 var db;

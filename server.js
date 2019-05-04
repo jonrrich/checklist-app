@@ -17,6 +17,7 @@ const cookieParser = require("cookie-parser");
 const database = require("./database.js");
 const authentication = require("./authentication.js");
 const users = require("./users.js");
+const projects = require("./projects.js");
 
 
 
@@ -56,6 +57,8 @@ function expressDynamicContent (app) {
 
   app.post("/api/users", authentication.postUser);   // User Signup
   app.post("/api/sessions", authentication.postSession); // User Login
-  app.get("/api/me", users.getMe);
+  app.get("/api/me", users.getMe); // Who am I
+  app.post("/api/projects", projects.postProjects); // Save Projects
+  app.get("/api/projects", projects.getProjects); // Read Projects
 
 }
