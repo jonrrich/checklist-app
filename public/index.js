@@ -34,7 +34,7 @@ var app = new Vue({
       .catch((error) => {
 
         if (error && error.response && error.response.status == 403) {  // If 403 Forbidden, bad login
-          Vue.$toast.error("Incorrect username or password. Please try again.");
+          Vue.$toast.error("Incorrect email or password. Please try again.");
         }
         else {
           Vue.$toast.error("Something went wrong.");
@@ -59,7 +59,7 @@ var app = new Vue({
       .catch((error) => {
 
         if (error && error.response && error.response.status == 409) {  // If 409 conflict, username already taken
-          Vue.$toast.error("This username is already taken. Choose a different username.");
+          Vue.$toast.error("This email is already taken. Choose a different email.");
         }
         else {
           Vue.$toast.error("Something went wrong.");
