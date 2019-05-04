@@ -12,29 +12,36 @@ var app = new Vue({
 
       var userData = data.data;
 
-      if (!userData || !userData.email) {   // If no userData, not logged in, redirect back to home
+      this.name = userData.name;
+      this.email = userData.email;
+
+      axios.get("/api/projects?email=" + this.email)   // Load logged in user's projects
+      .then((data) => {
+
+        var projectData = data.data;
+
+        this.projects = projectData;
+      })
+      .catch((error) => {
+
+        if (error && error.response && error.response.status == 403) {  // If 403 Forbidden, not logged in
+          window.location.replace(window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/");
+        }
+        else {
+          Vue.$toast.error("Something went wrong in loading your data.");
+        }
+
+      });
+    })
+    .catch((error) => {
+
+      if (error && error.response && error.response.status == 403) {  // If 403 Forbidden, not logged in
         window.location.replace(window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/");
       }
-
       else {
-        this.email = userData.email;
-
-        axios.get("/api/projects?email=" + this.email)   // Load logged in user's projects
-        .then((data) => {
-
-          var projectData = data.data;
-
-          this.projects = projectData;
-        })
-        .catch(() => {
-
-          Vue.$toast.error("Something went wrong in loading your data.");
-        });
+        Vue.$toast.error("Something went wrong in loading your data.");
       }
-    })
-    .catch(() => {
 
-      Vue.$toast.error("Something went wrong in loading your data.");
     });
   },
 

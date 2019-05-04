@@ -28,8 +28,8 @@ function getMe (req, res) {
 
   var token = req.cookies.token;
 
-  if (token == null) {  // If malformed, status 400
-    res.status(400).end();
+  if (token == null) {  // If missing token, status 403
+    res.status(403).end();
   }
 
   whoami(token).then((email) => {
