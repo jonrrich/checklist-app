@@ -1,0 +1,19 @@
+h1 {
+
+  text-align: center;
+}
+
+#login-container, #signup-container {
+  float: left;
+  margin: 5em;
+}
+
+#login-container {
+  position: absolute;
+  right: 50%;
+}
+
+#signup-container {
+  position: absolute;
+  left: 50%;
+}

@@ -1,1 +1,44 @@
-Hello, World!
+<!doctype html>
+<html>
+<head>
+  <title>checklist-app: Login or Signup</title>
+</head>
+<body>
+  <div id="app">
+    <h1>Welcome to checklist-app by Jonathan Rich</h1>
+    <div id="login-container">
+      <h2>Login</h2>
+      <label for="login_email-input">Email:</label>
+      <input id="login_email-input" v-model="login_email">
+      <br>
+      <label for="login_plaintextPassword-input">Password:</label>
+      <input id="login_plaintextPassword-input" v-model="login_plaintextPassword">
+      <br>
+      <button v-on:click="tryLogin">Login</button>
+    </div>
+    <div id="signup-container">
+      <h2>Signup</h2>
+      <label for="signup_name-input">Name:</label>
+      <input id="signup_name-input" v-model="signup_name">
+      <br>
+      <label for="signup_email-input">Email:</label>
+      <input id="signup_email-input" v-model="signup_email">
+      <br>
+      <label for="signup_plaintextPassword-input">Password:</label>
+      <input id="signup_plaintextPassword-input" v-model="signup_plaintextPassword">
+      <br>
+      <button v-on:click="trySignup">Signup</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue-toast-notification"></script>
+  <link href="https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/index.css" rel="stylesheet">
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <link href="styles.css" rel="stylesheet">
+  <script src="index.js"></script>
+</body>
+</html>
