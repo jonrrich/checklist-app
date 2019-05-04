@@ -41,24 +41,42 @@ function postProjects (req, res) {
 function getProjects (req, res) {
 
   var email = req.query.email;
+  var token = req.cookies.token;
 
   if (!email) {
     res.status(400).end();
     return;
   }
 
-  database.read("projects", { "email": email })
+  if (!token) {
+    res.status(403).end();
+    return;
+  }
+
+  database.read("sessions", { "email": email })
   .then((data) => {
 
-    var projects;
+    var validToken = data[0].token;
 
-    if (!data[0] || !data[0].projects) {
-      projects = [];
-    }
-    else {
-      projects = data[0].projects;
+    if (!validToken || token != validToken) {
+      res.status(403).end();
+      return;
     }
 
-    res.status(200).end(JSON.stringify(projects));
+    database.read("projects", { "email": email })
+    .then((data) => {
+
+      var projects;
+
+      if (!data[0] || !data[0].projects) {
+        projects = [];
+      }
+      else {
+        projects = data[0].projects;
+      }
+
+      res.status(200).end(JSON.stringify(projects));
+    });
   });
+
 }

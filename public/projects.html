@@ -7,11 +7,15 @@
   <div id="app">
     <h1>Welcome, {{ email }}</h1>
 
-    <h2>Your projects</h2>
 
-    <button v-on:click="addProject()">Add New Project</button>
 
     <div id="projects-container">
+
+      <h2>Your projects</h2>
+
+      <button v-on:click="addProject()">Add New Project</button>
+
+      <br>
 
       <div class="project" v-for="(project, i) in projects">
 
@@ -27,6 +31,21 @@
       </div>
 
     </div>
+
+    <br>
+
+
+
+    <div id="recently-completed-tasks-container">
+
+      <h2>Your recently completed tasks</h2>
+
+      <div v-for="task in recentlyCompletedTasks">
+        <input type="checkbox" checked="checked" disabled="disabled">
+        <span>{{ task.projectName }}: {{ task.taskName }}</span>
+      </div>
+    </div>
+
   </div>
 
   <script src="https://unpkg.com/vue"></script>

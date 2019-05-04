@@ -14,11 +14,23 @@ h1 {
   left: 50%;
 }
 
+
+#projects-container {
+  position: absolute;
+  top: 2em;
+  margin-left: 1em;
+}
+
+#recently-completed-tasks-container {
+  position: absolute;
+  bottom: 2em;
+  margin-left: 1em;
+}
+
 .project {
   float: left;
   width: 20em;
   border: 1px solid black;
-  margin-left: 1em;
   margin-right: 1em;
   padding-left: 0.5em;
   padding-right: 0.5em;

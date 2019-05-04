@@ -104,6 +104,29 @@ var app = new Vue({
       },
       deep: true
     }
+  },
+
+  computed: {
+
+    recentlyCompletedTasks: function () {
+
+      var projects = this.projects;
+
+      var completedTasks = [];
+      for (var project of projects) {
+
+        var tasks = project.tasks;
+        for (var task of tasks) {
+          if (!task.completed) continue;
+
+          completedTasks.push({ projectName: project.name, taskName: task.name, complete_time: task.complete_time });
+        }
+      }
+
+      completedTasks.sort((a, b) => b.complete_time - a.complete_time);   // Sort descending; i.e. most recent first
+
+      return completedTasks;
+    }
   }
 
 
