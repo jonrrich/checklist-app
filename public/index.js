@@ -29,7 +29,7 @@ var app = new Vue({
 
         document.cookie = `token=${token};path=/`;  // Set a cookie with the session token
 
-        Vue.$toast.success("ok");
+        window.location.href = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/projects.html";  // redirect to projects page
       })
       .catch((error) => {
 

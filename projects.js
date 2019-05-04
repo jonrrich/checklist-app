@@ -23,7 +23,7 @@ function postProjects (req, res) {
 
   if (!email || !projects) {
 
-      res.end(400);
+      res.status(400).end();
       return;
   }
 

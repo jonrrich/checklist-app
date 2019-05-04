@@ -1,19 +1,48 @@
+Vue.use(VueToast, { position: "bottom", duration: 10000 });
 Vue.use(VuejsDialog.main.default);
 
 var app = new Vue({
 
   el: "#app",
 
+  created: function () {
+
+    axios.get("/api/me")    // Load logged in user information
+    .then((data) => {
+
+      var userData = data.data;
+
+      if (!userData || !userData.email) {   // If no userData, not logged in, redirect back to home
+        window.location.replace(window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/");
+      }
+
+      else {
+        this.email = userData.email;
+
+        axios.get("/api/projects?email=" + this.email)   // Load logged in user's projects
+        .then((data) => {
+
+          var projectData = data.data;
+
+          this.projects = projectData;
+        })
+        .catch(() => {
+
+          Vue.$toast.error("Something went wrong in loading your data.");
+        });
+      }
+    })
+    .catch(() => {
+
+      Vue.$toast.error("Something went wrong in loading your data.");
+    });
+  },
+
   data: {
 
-    email: "test@example.com",
+    email: "",
 
-    projects: [
-
-      { name: "project 1", tasks: [{ name: "task 1", completed: false }, { name: "task 2", completed: false }] },
-      { name: "project 2", tasks: [{ name: "task 3", completed: false }, { name: "task 4", completed: false }] }
-
-    ]
+    projects: []
   },
 
   methods: {
@@ -67,7 +96,11 @@ var app = new Vue({
     projects: {
       handler: function (newProjects, oldProjects) {
 
-        console.log(newProjects)
+        axios.post("/api/projects", { "email": this.email, "projects": newProjects })
+        .catch(() => {
+
+          Vue.$toast.error("Something went wrong in saving your work.");
+        });
       },
       deep: true
     }
