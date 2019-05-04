@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<title>checklist-app: Projects</title>
+</head>
+<body>
+  <div id="app">
+    <h1>Welcome, {{ email }}</h1>
+
+    <h2>Your projects</h2>
+
+    <button v-on:click="addProject()">Add New Project</button>
+
+    <div id="projects-container">
+
+      <div class="project" v-for="(project, i) in projects">
+
+        <h3>{{ project.name }}</h3>
+
+        <div v-for="(task, j) in project.tasks">
+          <input type="checkbox" v-model="project.tasks[j].completed" v-on:change="taskUpdate(i, j)">
+          <span>{{ task.name }}</span>
+        </div>
+
+        <button v-on:click="addTask(i)">Add Task</button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/vuejs-dialog@1.4.0/dist/vuejs-dialog.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vuejs-dialog@1.4.0/dist/vuejs-dialog.min.js"></script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <link href="styles.css" rel="stylesheet">
+  <script src="projects.js"></script>
+</body>
+</html>
