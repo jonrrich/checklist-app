@@ -20,6 +20,7 @@ function postProjects (req, res) {
   var data = req.body;
   var email = data.email;
   var projects = data.projects;
+  var token = req.cookies.token;
 
   if (!email || !projects) {
 
@@ -30,10 +31,28 @@ function postProjects (req, res) {
   // In a real application, we should verify that projects is of correct structure. For brevity, I have left this out.
 
 
-  database.save("projects", data)
-  .then(() => {
 
-    res.status(200).end();
+  if (!token) {
+    res.status(403).end();
+    return;
+  }
+
+  database.read("sessions", { "email": email })
+  .then((sessionData) => {
+
+    var validToken = sessionData[0].token;
+
+    if (!validToken || token != validToken) {
+      res.status(403).end();    // If invalid token, status 403 Forbidden
+      return;
+    }
+
+
+    database.save("projects", data)
+    .then(() => {
+
+      res.status(200).end();
+    });
   });
 
 }
@@ -54,12 +73,12 @@ function getProjects (req, res) {
   }
 
   database.read("sessions", { "email": email })
-  .then((data) => {
+  .then((sessionData) => {
 
-    var validToken = data[0].token;
+    var validToken = sessionData[0].token;
 
     if (!validToken || token != validToken) {
-      res.status(403).end();
+      res.status(403).end();    // If invalid token, status 403 Forbidden
       return;
     }
 
