@@ -2,6 +2,30 @@ h1 {
   text-align: center;
 }
 
+.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #d3d3d3;
+}
+
+.nav > li {
+  float: left;
+}
+
+.nav > li a {
+  display: block;
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  padding: 14px 16px;
+}
+
+.nav > li:hover, .nav > li > a:hover {
+  background-color: #ededed;
+}
+
 #login-container, #signup-container {
   position: absolute;
   float: left;
@@ -16,25 +40,34 @@ h1 {
 
 
 #projects-container {
-  position: absolute;
-  top: 2em;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
   margin-left: 1em;
+
+  overflow-x: scroll;
 }
 
 #recently-completed-tasks-container {
-  position: absolute;
-  bottom: 2em;
   margin-left: 1em;
+  height: 20vh;
+  overflow: scroll;
+  padding-right: 3em;
 }
 
 .project {
+  flex: none;
   float: left;
-  width: 20em;
+  width: 15vw;
+  height: 35vh;
   border: 1px solid black;
   margin-right: 1em;
+  margin-bottom: 10px;
   padding-left: 0.5em;
   padding-right: 0.5em;
   padding-bottom: 1em;
+  overflow: scroll;
 }
 
 

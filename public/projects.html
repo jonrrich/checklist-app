@@ -5,32 +5,39 @@
 </head>
 <body>
   <div id="app">
+
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/profile.html">Profile</a></li>
+      <li><a style="font-weight: bold" href="/projects.html">Projects</a></li>
+    </ul>
+
     <h1>Welcome, {{ name }}</h1>
 
-
-
-    <div id="projects-container">
+    <div>
 
       <h2>Your projects</h2>
 
       <button v-on:click="addProject()">Add New Project</button>
 
-      <br>
+      <div id="projects-container">
 
-      <div class="project" v-for="(project, i) in projects">
+        <div class="project" v-for="(project, i) in projects">
 
-        <h3>{{ project.name }}</h3>
+          <h3>{{ project.name }}</h3>
 
-        <div v-for="(task, j) in project.tasks">
-          <input type="checkbox" v-model="project.tasks[j].completed" v-on:change="taskUpdate(i, j)">
-          <span>{{ task.name }}</span>
-        </div>
+          <div v-for="(task, j) in project.tasks">
+            <input type="checkbox" v-model="project.tasks[j].completed" v-on:change="taskUpdate(i, j)">
+            <span>{{ task.name }}</span>
+          </div>
 
-        <button v-on:click="addTask(i)">Add Task</button>
+          <button v-on:click="addTask(i)">Add Task</button>
 
-        <div class="project-progress-bar">
-          <span>{{ projectProgress(i) }}%</span>
-          <div v-bind:style="{ width: projectProgress(i) + '%' }"></div>
+          <div class="project-progress-bar">
+            <span>{{ projectProgress(i) }}%</span>
+            <div v-bind:style="{ width: projectProgress(i) + '%' }"></div>
+          </div>
+
         </div>
 
       </div>
@@ -40,14 +47,15 @@
     <br>
 
 
-
-    <div id="recently-completed-tasks-container">
-
+    <div>
       <h2>Your recently completed tasks</h2>
 
-      <div v-for="task in recentlyCompletedTasks">
-        <input type="checkbox" checked="checked" disabled="disabled">
-        <span>{{ task.projectName }}: {{ task.taskName }}</span>
+      <div id="recently-completed-tasks-container">
+
+        <div v-for="task in recentlyCompletedTasks">
+          <input type="checkbox" checked="checked" disabled="disabled">
+          <span>{{ task.projectName }}: {{ task.taskName }}</span>
+        </div>
       </div>
     </div>
 
