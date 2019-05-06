@@ -56,6 +56,11 @@ var app = new Vue({
       axios.post("/api/users", data)
       .then((response) => {
 
+        this.signup_name = "";
+        this.signup_email = "";
+        this.signup_plaintextPassword = "";
+        this.signup_isAdmin = false;
+
         Vue.$toast.success("Signup successful! You may now log in.");
       })
       .catch((error) => {

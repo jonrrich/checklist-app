@@ -99,11 +99,14 @@ function postSession (req, res) {
   database.read("users", { "email": email })
   .then((data) => {
     if (data.length == 0) {  // If user not found, status 403 Forbidden
+
       res.status(403).end();
     }
     else {
 
       var passwordHash = data[0].passwordHash;
+
+      console.log(passwordHash)
 
       bcrypt.compare(plaintextPassword, passwordHash)
       .then((authenticated) => {

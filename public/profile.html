@@ -7,20 +7,31 @@
   <div id="app">
     <ul class="nav">
       <li><a href="/">Home</a></li>
-      <li><a style="font-weight: bold" href="/profile.html">Profile</a></li>
+      <li><a style="text-decoration: underline" href="/profile.html">Profile</a></li>
       <li><a href="/projects.html">Projects</a></li>
     </ul>
 
     <h1>Welcome, {{ name }}</h1>
-    <h2>Your profile</h2>
 
-    <span style="font-weight: bold">Name: </span><span>{{ name }}</span>
-    <br>
-    <span style="font-weight: bold">Email: </span><span>{{ email }}</span>
-    <br>
-    <span v-if="isAdmin">You are an administrator.</span>
-    <span v-if="!isAdmin">You are not an administrator.</span>
+    <div>
+
+      <h2>Your profile</h2>
+
+      <div id="profile-container">
+        <span>Name: {{ name }}</span>
+        <br>
+        <span>Email: {{ email }}</span>
+        <br>
+        <span v-if="isAdmin">You are an administrator.</span>
+        <span v-if="!isAdmin">You are not an administrator.</span>
+      </div>
+
+    </div>
   </div>
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
   <script src="https://unpkg.com/vue"></script>
 

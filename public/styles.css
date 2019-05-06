@@ -1,5 +1,34 @@
+h1, h2, h3, p, span, a, button, label {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h1, h2, h3 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+span, a, label {
+  font-size: 16px;
+}
+
 h1 {
   text-align: center;
+}
+
+button {
+  font-size: 12px;
 }
 
 .nav {
@@ -31,6 +60,23 @@ h1 {
   float: left;
   margin: 5em;
 }
+
+#login-container > h2, #signup-container > h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#login-container > *, #signup-container > * {
+  margin-bottom: 10px;
+}
+
+#login-container > button, #signup-container > button {
+  font-size: 16px;
+  left: 50%;
+  position: relative;
+  transform: translate(-50%);
+}
+
 #login-container {
   right: 50%;
 }
@@ -38,6 +84,14 @@ h1 {
   left: 50%;
 }
 
+#profile-container {
+  margin: 5em;
+}
+
+#profile-container > span {
+  font-size: 18px;
+  display: block;
+}
 
 #projects-container {
   display: flex;
@@ -90,4 +144,15 @@ h1 {
   position: absolute;
   width: 100%;
   text-align: center;
+}
+
+
+#new-project-button {
+  font-size: 18px;
+  margin: 20px;
+}
+
+#switch-project-user-container {
+  margin-left: 40px;
+  margin-right: 40px;
 }

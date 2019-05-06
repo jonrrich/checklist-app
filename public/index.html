@@ -12,7 +12,7 @@
       <input id="login_email-input" v-model="login_email">
       <br>
       <label for="login_plaintextPassword-input">Password:</label>
-      <input id="login_plaintextPassword-input" v-model="login_plaintextPassword">
+      <input id="login_plaintextPassword-input" type="password" v-model="login_plaintextPassword">
       <br>
       <button v-on:click="tryLogin">Login</button>
     </div>
@@ -25,7 +25,7 @@
       <input id="signup_email-input" v-model="signup_email">
       <br>
       <label for="signup_plaintextPassword-input">Password:</label>
-      <input id="signup_plaintextPassword-input" v-model="signup_plaintextPassword">
+      <input id="signup_plaintextPassword-input" type="password" v-model="signup_plaintextPassword">
       <br>
       <label for="signup_isAdmin-input">Make this user an administrator?</label>
       <input id="signup_isAdmin-input" type="checkbox" v-model="signup_isAdmin">
@@ -33,6 +33,10 @@
       <button v-on:click="trySignup">Signup</button>
     </div>
   </div>
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
   <script src="https://unpkg.com/vue"></script>
 

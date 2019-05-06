@@ -9,24 +9,26 @@
     <ul class="nav">
       <li><a href="/">Home</a></li>
       <li><a href="/profile.html">Profile</a></li>
-      <li><a style="font-weight: bold" href="/projects.html">Projects</a></li>
+      <li><a style="text-decoration: underline" href="/projects.html">Projects</a></li>
     </ul>
 
     <h1>Welcome, {{ name }}</h1>
 
     <div>
 
-      <div v-if="isAdmin">
-        View/Edit another user's projects
+      <div id="switch-project-user-container" v-if="isAdmin">
+        <span>View/Edit another user's projects:</span>
         <input v-model="other_email">
         <button v-on:click="switchProjectsUser(other_email)" v-bind:disabled="projects_email == other_email">View/Edit other user's work</button>
         <button v-on:click="switchProjectsUser(email)" v-bind:disabled="projects_email == email">Switch back to my work</button>
       </div>
 
+      <br>
+
       <h2 v-if="projects_email == email">Your projects</h2>
       <h2 v-if="projects_email != email">{{ projects_name }}'s projects</h2>
 
-      <button v-on:click="addProject()">Add New Project</button>
+      <button id="new-project-button" v-on:click="addProject()">Add New Project</button>
 
       <div id="projects-container">
 
@@ -38,6 +40,8 @@
             <input type="checkbox" v-model="project.tasks[j].completed" v-on:change="taskUpdate(i, j)">
             <span>{{ task.name }}</span>
           </div>
+
+          <br>
 
           <button v-on:click="addTask(i)">Add Task</button>
 
@@ -63,12 +67,16 @@
 
         <div v-for="task in recentlyCompletedTasks">
           <input type="checkbox" checked="checked" disabled="disabled">
-          <span>{{ task.projectName }}: {{ task.taskName }}</span>
+          <span>({{ task.projectName }}): {{ task.taskName }}</span>
         </div>
       </div>
     </div>
 
   </div>
+
+
+
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
   <script src="https://unpkg.com/vue"></script>
 
