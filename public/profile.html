@@ -18,6 +18,8 @@
     <br>
     <span style="font-weight: bold">Email: </span><span>{{ email }}</span>
     <br>
+    <span v-if="isAdmin">You are an administrator.</span>
+    <span v-if="!isAdmin">You are not an administrator.</span>
   </div>
 
   <script src="https://unpkg.com/vue"></script>

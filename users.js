@@ -3,7 +3,8 @@
 
 module.exports = {
   whoami, // "who am I?" - convenience function that gives an email for a given session token, or null if invalid token
-  getMe   // gets information about the current user
+  getMe,   // gets information about the current user
+  getUser  // gets information about a specified user
 }
 
 
@@ -41,10 +42,32 @@ function getMe (req, res) {
       database.read("users", { "email": email })
       .then((data) => {
 
-        var userData = { "email": data[0].email, "name": data[0].name };
+        var userData = { "email": data[0].email, "name": data[0].name, "isAdmin": data[0].isAdmin };
 
         res.status(200).end(JSON.stringify(userData));  // If everything OK, status 200; include information
       });
+    }
+
+  });
+}
+
+function getUser (req, res) {
+
+  var email = req.query.email;
+
+  database.read("users", { "email": email })
+  .then((data) => {
+
+    if (data.length == 0) {   // user doesn't exist, status 404 Not Found
+
+      res.status(404).end();
+    }
+    else {
+
+      var userData = { "email": data[0].email, "name": data[0].name, "isAdmin": data[0].isAdmin };
+
+      res.status(200).end(JSON.stringify(userData));  // If everything OK, status 200; include information
+
     }
 
   });

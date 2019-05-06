@@ -27,6 +27,9 @@
       <label for="signup_plaintextPassword-input">Password:</label>
       <input id="signup_plaintextPassword-input" v-model="signup_plaintextPassword">
       <br>
+      <label for="signup_isAdmin-input">Make this user an administrator?</label>
+      <input id="signup_isAdmin-input" type="checkbox" v-model="signup_isAdmin">
+      <br>
       <button v-on:click="trySignup">Signup</button>
     </div>
   </div>

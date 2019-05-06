@@ -11,7 +11,7 @@ module.exports = {
 
 
 const database = require("./database.js");
-
+const authentication = require("./authentication.js");
 
 
 function postProjects (req, res) {
@@ -37,22 +37,21 @@ function postProjects (req, res) {
     return;
   }
 
-  database.read("sessions", { "email": email })
-  .then((sessionData) => {
 
-    var validToken = sessionData[0].token;
+  authentication.isPrivilegedForEmail(token, email)
+  .then((privileged) => {
 
-    if (!validToken || token != validToken) {
-      res.status(403).end();    // If invalid token, status 403 Forbidden
+    if (!privileged) {
+      res.status(403).end();
       return;
     }
-
 
     database.save("projects", data)
     .then(() => {
 
       res.status(200).end();
     });
+
   });
 
 }
@@ -72,13 +71,11 @@ function getProjects (req, res) {
     return;
   }
 
-  database.read("sessions", { "email": email })
-  .then((sessionData) => {
+  authentication.isPrivilegedForEmail(token, email)
+  .then((privileged) => {
 
-    var validToken = sessionData[0].token;
-
-    if (!validToken || token != validToken) {
-      res.status(403).end();    // If invalid token, status 403 Forbidden
+    if (!privileged) {
+      res.status(403).end();
       return;
     }
 
@@ -96,6 +93,7 @@ function getProjects (req, res) {
 
       res.status(200).end(JSON.stringify(projects));
     });
+
   });
 
 }

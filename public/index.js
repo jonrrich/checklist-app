@@ -10,7 +10,8 @@ var app = new Vue({
 
     signup_name: "",
     signup_email: "",
-    signup_plaintextPassword: ""
+    signup_plaintextPassword: "",
+    signup_isAdmin: false
   },
 
   methods: {
@@ -48,7 +49,8 @@ var app = new Vue({
       var data = {
         "name": this.signup_name,
         "email": this.signup_email,
-        "plaintextPassword": this.signup_plaintextPassword
+        "plaintextPassword": this.signup_plaintextPassword,
+        "isAdmin": this.signup_isAdmin
       }
 
       axios.post("/api/users", data)

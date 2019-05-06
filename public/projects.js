@@ -14,6 +14,9 @@ var app = new Vue({
 
       this.name = userData.name;
       this.email = userData.email;
+      this.isAdmin = userData.isAdmin;
+
+      this.projects_email = userData.email;
 
       axios.get("/api/projects?email=" + this.email)   // Load logged in user's projects
       .then((data) => {
@@ -47,7 +50,13 @@ var app = new Vue({
 
   data: {
 
+    name: "",
     email: "",
+    isAdmin: false,
+
+    other_email: "",
+
+    projects_email: "",
 
     projects: []
   },
@@ -97,6 +106,40 @@ var app = new Vue({
 
     },
 
+    switchProjectsUser: function (new_projects_email) {
+
+      axios.get("/api/users?email=" + new_projects_email)
+      .then((data) => {
+
+        var userData = data.data;
+
+        axios.get("/api/projects?email=" + new_projects_email)   // Load logged in user's projects
+        .then((data) => {
+
+          var projectData = data.data;
+
+          this.projects_name = userData.name;
+          this.projects_email = userData.email;
+          this.projects = projectData;
+        })
+        .catch((error) => {
+
+          if (error && error.response && error.response.status == 403) {  // If 403 Forbidden, not logged in
+            window.location.replace(window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/");
+          }
+          else {
+            Vue.$toast.error("Something went wrong in loading your data.");
+          }
+
+        });
+
+      })
+      .catch((error) => {
+        Vue.$toast.error("There is no user with the email you specified.");
+      });
+
+    },
+
     projectProgress: function (projectIndex) {
 
       var project = this.projects[projectIndex];
@@ -115,7 +158,7 @@ var app = new Vue({
     projects: {
       handler: function (newProjects, oldProjects) {
 
-        axios.post("/api/projects", { "email": this.email, "projects": newProjects })
+        axios.post("/api/projects", { "email": this.projects_email, "projects": newProjects })
         .catch(() => {
 
           Vue.$toast.error("Something went wrong in saving your work.");

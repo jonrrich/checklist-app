@@ -58,6 +58,7 @@ function expressDynamicContent (app) {
   app.post("/api/users", authentication.postUser);   // User Signup
   app.post("/api/sessions", authentication.postSession); // User Login
   app.get("/api/me", users.getMe); // Who am I
+  app.get("/api/users", users.getUser); // Get user info
   app.post("/api/projects", projects.postProjects); // Save Projects
   app.get("/api/projects", projects.getProjects); // Read Projects
 

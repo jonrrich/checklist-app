@@ -13,6 +13,7 @@ var app = new Vue({
 
       this.name = userData.name;
       this.email = userData.email;
+      this.isAdmin = userData.isAdmin;
 
     })
     .catch((error) => {
@@ -28,7 +29,8 @@ var app = new Vue({
 
   data: {
     name: "",
-    email: ""
+    email: "",
+    isAdmin: false
   }
 
 });

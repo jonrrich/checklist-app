@@ -16,7 +16,15 @@
 
     <div>
 
-      <h2>Your projects</h2>
+      <div v-if="isAdmin">
+        View/Edit another user's projects
+        <input v-model="other_email">
+        <button v-on:click="switchProjectsUser(other_email)" v-bind:disabled="projects_email == other_email">View/Edit other user's work</button>
+        <button v-on:click="switchProjectsUser(email)" v-bind:disabled="projects_email == email">Switch back to my work</button>
+      </div>
+
+      <h2 v-if="projects_email == email">Your projects</h2>
+      <h2 v-if="projects_email != email">{{ projects_name }}'s projects</h2>
 
       <button v-on:click="addProject()">Add New Project</button>
 
@@ -48,7 +56,8 @@
 
 
     <div>
-      <h2>Your recently completed tasks</h2>
+      <h2 v-if="projects_email == email">Your recently completed tasks</h2>
+      <h2 v-if="projects_email != email">{{ projects_name }}'s recently completed tasks</h2>
 
       <div id="recently-completed-tasks-container">
 
