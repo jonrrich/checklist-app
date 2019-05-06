@@ -106,8 +106,6 @@ function postSession (req, res) {
 
       var passwordHash = data[0].passwordHash;
 
-      console.log(passwordHash)
-
       bcrypt.compare(plaintextPassword, passwordHash)
       .then((authenticated) => {
           if (authenticated) {  // If correct password, status 201 Created; generate session token

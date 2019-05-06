@@ -1,3 +1,5 @@
+document.cookie = "token=;";    // Clear cookies on home page access
+
 Vue.use(VueToast, { position: "bottom", duration: 10000 });
 
 var app = new Vue({
