@@ -1,0 +1,1 @@
+[{"name":"User","email":"user@example.com","passwordHash":"$2b$10$EzAjbzfgxCdxpkG49/vlgugE2uyXySkJrFzpIqbwecjb8XMr82boC","isAdmin":false,"_id":"5f10c0c82d744476949a230fd375b885"},{"name":"Administrator","email":"admin@example.com","passwordHash":"$2b$10$Jny6/gz.OGTXgeFarhffCuh5JvGTXoIVJ1xVdm03lqZPQ7q1H0tze","isAdmin":true,"_id":"97a2a3530c4149089e5e11ad9928b86c"}]
